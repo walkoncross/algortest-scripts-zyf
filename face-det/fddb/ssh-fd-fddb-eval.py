@@ -153,6 +153,7 @@ def main():
 
         fp_fddb.flush()
 
+    fp.close()
     fp_rlt.close()
     fp_fddb.close()
 
