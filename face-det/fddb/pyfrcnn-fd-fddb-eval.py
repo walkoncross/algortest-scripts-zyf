@@ -87,8 +87,12 @@ def main():
         else:
             base_fn = line[line.find('200'):]
 
+        if base_fn.endswith('.jpg'):
+            base_fn = osp.splitext(base_fn)[0]
         fp_fddb.write(base_fn + '\n')
 
+        if not line.endswith('.jpg'):
+            line += '.jpg'
         im_file = osp.join(img_root_dir, line)
 
         msg = '===> ' + im_file

@@ -16,9 +16,9 @@ VISUALIZE_RLT = False
 # CLASSES = ('__background__', 'face')
 
 # prototxt = 'models/pascal_voc/VGG16/faster_rcnn_alt_opt/faster_rcnn_test.pt'
-prototxt = '/disk2/zhaoyafei/SSH-FD/SSH/models/test_ssh.prototxt'
-caffemodel = '/disk2/zhaoyafei/SSH-FD/data/SSH_models/SSH.caffemodel'
-# caffemodel = '/disk2/zhaoyafei/SSH-FD/output/ssh/wider_train/SSH_iter_21000.caffemodel'
+prototxt = '/disk2/zhaoyafei/ssh-fd/SSH/models/test_ssh.prototxt'
+caffemodel = '/disk2/zhaoyafei/ssh-fd/data/SSH_models/SSH.caffemodel'
+# caffemodel = '/disk2/zhaoyafei/ssh-fd/output/ssh/wider_train/SSH_iter_21000.caffemodel'
 
 config_file = './SSH/configs/wider.yml'
 # config_file = './SSH/configs/wider_pyramid.yml'
@@ -100,8 +100,12 @@ def main():
         else:
             base_fn = line[line.find('200'):]
 
+        if base_fn.endswith('.jpg'):
+            base_fn = osp.splitext(base_fn)[0]
         fp_fddb.write(base_fn + '\n')
 
+        if not line.endswith('.jpg'):
+            line += '.jpg'
         im_file = osp.join(img_root_dir, line)
 
         msg = '===> ' + im_file
